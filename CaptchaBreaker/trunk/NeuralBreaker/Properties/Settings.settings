@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NeuralBreaker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="commandLineApp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">captchad.exe</Value>
+    </Setting>
+    <Setting Name="commandLineArgs" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-output "%image%" "%temp%"</Value>
+    </Setting>
+    <Setting Name="pathNeuralNetwork" Type="System.String" Scope="User">
+      <Value Profile="(Default)">actual.xml</Value>
+    </Setting>
+    <Setting Name="autostartLearning" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="lockedConfiguration" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="onlyUseUppercase" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="automaticSave" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
