@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SecureConsoleLauncher.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PassHash" Type="System.String" Scope="User">
+      <Value Profile="(Default)">36-27-90-9A-29-C3-13-81-A0-71-EC-27-F7-C9-CA-97-72-61-82-AE-D2-9A-7D-DD-2E-54-35-33-22-CF-B3-0A-BB-9E-3A-6D-F2-AC-2C-20-FE-23-43-63-11-D6-78-56-4D-0C-8D-30-59-30-57-5F-60-E2-D3-D0-48-18-4D-79</Value>
+    </Setting>
+    <Setting Name="RunNormally" Type="System.String" Scope="User">
+      <Value Profile="(Default)">_utilman.exe</Value>
+    </Setting>
+    <Setting Name="RunWhenSecure" Type="System.String" Scope="User">
+      <Value Profile="(Default)">taskmgr.exe</Value>
+    </Setting>
+    <Setting Name="SystemAccount" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SYSTEM</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
