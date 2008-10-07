@@ -40,11 +40,11 @@
             this.analizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockToolbarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.limpiarHistorialDeAutocompletadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.limpiarAnálisisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lockToolbarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -100,7 +100,7 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(50, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(57, 22);
             this.toolStripLabel1.Text = "Dirección";
             // 
             // toolStripTextBoxIp
@@ -111,12 +111,12 @@
             this.toolStripTextBoxIp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toolStripTextBoxIp.MaxLength = 15;
             this.toolStripTextBoxIp.Name = "toolStripTextBoxIp";
-            this.toolStripTextBoxIp.Size = new System.Drawing.Size(120, 21);
+            this.toolStripTextBoxIp.Size = new System.Drawing.Size(120, 23);
             // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(47, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(51, 22);
             this.toolStripLabel2.Text = "Máscara";
             // 
             // toolStripTextBoxMask
@@ -127,7 +127,7 @@
             this.toolStripTextBoxMask.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toolStripTextBoxMask.MaxLength = 6;
             this.toolStripTextBoxMask.Name = "toolStripTextBoxMask";
-            this.toolStripTextBoxMask.Size = new System.Drawing.Size(80, 21);
+            this.toolStripTextBoxMask.Size = new System.Drawing.Size(80, 23);
             // 
             // toolStripSplitButtonAnalize
             // 
@@ -149,14 +149,14 @@
             // 
             this.analizeToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.analizeToolStripMenuItem.Name = "analizeToolStripMenuItem";
-            this.analizeToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.analizeToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.analizeToolStripMenuItem.Text = "Analizar dirección y máscara";
             this.analizeToolStripMenuItem.Click += new System.EventHandler(this.analizeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(244, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(233, 6);
             // 
             // opcionesToolStripMenuItem
             // 
@@ -167,26 +167,36 @@
             this.limpiarAnálisisToolStripMenuItem});
             this.opcionesToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.opcionesToolStripMenuItem.Text = "Opciones";
+            // 
+            // lockToolbarsToolStripMenuItem
+            // 
+            this.lockToolbarsToolStripMenuItem.Checked = global::IpAnalizer.Properties.Settings.Default.lockToolbars;
+            this.lockToolbarsToolStripMenuItem.CheckOnClick = true;
+            this.lockToolbarsToolStripMenuItem.Name = "lockToolbarsToolStripMenuItem";
+            this.lockToolbarsToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.lockToolbarsToolStripMenuItem.Text = "Bloquear barras de menú";
+            this.lockToolbarsToolStripMenuItem.Visible = false;
+            this.lockToolbarsToolStripMenuItem.Click += new System.EventHandler(this.lockToolbarsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(250, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(239, 6);
             this.toolStripMenuItem2.Visible = false;
             // 
             // limpiarHistorialDeAutocompletadoToolStripMenuItem1
             // 
             this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Name = "limpiarHistorialDeAutocompletadoToolStripMenuItem1";
-            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Size = new System.Drawing.Size(253, 22);
+            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Size = new System.Drawing.Size(242, 22);
             this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Text = "Limpiar historial de autocompletado";
             this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Click += new System.EventHandler(this.limpiarHistorialDeAutocompletadoToolStripMenuItem1_Click);
             // 
             // limpiarAnálisisToolStripMenuItem
             // 
             this.limpiarAnálisisToolStripMenuItem.Name = "limpiarAnálisisToolStripMenuItem";
-            this.limpiarAnálisisToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.limpiarAnálisisToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
             this.limpiarAnálisisToolStripMenuItem.Text = "Limpiar análisis";
             this.limpiarAnálisisToolStripMenuItem.Click += new System.EventHandler(this.limpiarAnalisisToolStripMenuItem_Click);
             // 
@@ -194,19 +204,9 @@
             // 
             this.closeToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.closeToolStripMenuItem.Text = "Cerrar";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
-            // lockToolbarsToolStripMenuItem
-            // 
-            this.lockToolbarsToolStripMenuItem.Checked = global::IpAnalizer.Properties.Settings.Default.lockToolbars;
-            this.lockToolbarsToolStripMenuItem.CheckOnClick = true;
-            this.lockToolbarsToolStripMenuItem.Name = "lockToolbarsToolStripMenuItem";
-            this.lockToolbarsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.lockToolbarsToolStripMenuItem.Text = "Bloquear barras de menú";
-            this.lockToolbarsToolStripMenuItem.Visible = false;
-            this.lockToolbarsToolStripMenuItem.Click += new System.EventHandler(this.lockToolbarsToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -215,6 +215,7 @@
             this.ClientSize = new System.Drawing.Size(612, 260);
             this.Controls.Add(this.toolStripContainer1);
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormMain";
             this.Text = "Analizador de direcciones";

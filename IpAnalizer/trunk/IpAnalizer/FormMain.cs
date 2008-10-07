@@ -190,6 +190,10 @@ namespace IpAnalizer
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Ocultar la ventana para no producir un retardo
+            this.Hide();
+            Application.DoEvents();
+
             Settings.Default.ipAutocomplete = new ArrayList();
             Settings.Default.maskAutocomplete = new ArrayList();
 
