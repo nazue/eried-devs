@@ -48,7 +48,7 @@ namespace IpAnalizer
             s.Add(String.Format("Máscara formateada:\t{0}",SplitAndJoinString(RepeatAsBin(mask),8,".")));
             s.Add(String.Format("Máscara real:\t\t{0}",Bin2Dec(SplitAndJoinString(RepeatAsBin(mask),8,"."))));
             s.Add(String.Format("Clase según máscara:\tCLASE {0}", GetMaskClass(SplitAndJoinString(RepeatAsBin(mask), 8, "."))));
-            s.Add(String.Format("Subredes posibles:\t{0}",Convert.ToInt64("0"+GetSubnetworks(RepeatAsBin(mask))[0],2)));
+            s.Add(String.Format("Subredes posibles:\t{0}", Convert.ToInt64("0" + GetSubnetworks(GetLastBitsByClassName(RepeatAsBin(mask), GetMaskClass(SplitAndJoinString(RepeatAsBin(mask), 8, "."))))[0], 2)));
             s.Add(String.Format("Hosts posibles:\t\t{0}, menos 2 reservadas", Convert.ToInt64("0" + GetSubnetworks(RepeatAsBin(mask))[1].Replace('0', '1'), 2)));
 
             return s.ToArray();
@@ -111,9 +111,16 @@ namespace IpAnalizer
             return String.Format("1{0}0",p).Split(new String[] {"10"},StringSplitOptions.None);
         }
 
-        private string GetLast8bits(string p)
+        private string GetLastBitsByClassName(string p, string className)
         {
-            return p.Substring(p.Length - 8, 8);
+            int n = 16;
+            switch (className)
+            {
+                case "A": n = 32; break;
+                case "B": n = 24; break;
+            } 
+
+            return p.Substring(p.Length - n, n);
         }
 
         private string Bin2Dec(string p)
