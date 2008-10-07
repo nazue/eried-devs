@@ -165,6 +165,7 @@ namespace IpAnalizer
         private void FormMain_Load(object sender, EventArgs e)
         {
             updateGui();
+            toolStripTextBoxIp.Focus();
         }
 
         private void updateGui()

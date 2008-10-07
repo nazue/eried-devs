@@ -40,11 +40,11 @@
             this.analizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lockToolbarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.limpiarHistorialDeAutocompletadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.limpiarAnálisisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockToolbarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -59,7 +59,8 @@
             this.richTextBoxResults.Name = "richTextBoxResults";
             this.richTextBoxResults.ReadOnly = true;
             this.richTextBoxResults.Size = new System.Drawing.Size(612, 235);
-            this.richTextBoxResults.TabIndex = 4;
+            this.richTextBoxResults.TabIndex = 0;
+            this.richTextBoxResults.TabStop = false;
             this.richTextBoxResults.Text = "";
             this.richTextBoxResults.WordWrap = false;
             // 
@@ -169,16 +170,6 @@
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.opcionesToolStripMenuItem.Text = "Opciones";
             // 
-            // lockToolbarsToolStripMenuItem
-            // 
-            this.lockToolbarsToolStripMenuItem.Checked = global::IpAnalizer.Properties.Settings.Default.lockToolbars;
-            this.lockToolbarsToolStripMenuItem.CheckOnClick = true;
-            this.lockToolbarsToolStripMenuItem.Name = "lockToolbarsToolStripMenuItem";
-            this.lockToolbarsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.lockToolbarsToolStripMenuItem.Text = "Bloquear barras de menú";
-            this.lockToolbarsToolStripMenuItem.Visible = false;
-            this.lockToolbarsToolStripMenuItem.Click += new System.EventHandler(this.lockToolbarsToolStripMenuItem_Click);
-            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
@@ -206,6 +197,16 @@
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.closeToolStripMenuItem.Text = "Cerrar";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // lockToolbarsToolStripMenuItem
+            // 
+            this.lockToolbarsToolStripMenuItem.Checked = global::IpAnalizer.Properties.Settings.Default.lockToolbars;
+            this.lockToolbarsToolStripMenuItem.CheckOnClick = true;
+            this.lockToolbarsToolStripMenuItem.Name = "lockToolbarsToolStripMenuItem";
+            this.lockToolbarsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.lockToolbarsToolStripMenuItem.Text = "Bloquear barras de menú";
+            this.lockToolbarsToolStripMenuItem.Visible = false;
+            this.lockToolbarsToolStripMenuItem.Click += new System.EventHandler(this.lockToolbarsToolStripMenuItem_Click);
             // 
             // FormMain
             // 
