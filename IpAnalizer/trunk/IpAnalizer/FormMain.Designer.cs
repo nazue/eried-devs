@@ -33,18 +33,18 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBoxIp = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBoxMask = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSplitButtonAnalize = new System.Windows.Forms.ToolStripSplitButton();
             this.analizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockToolbarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.limpiarHistorialDeAutocompletadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.limpiarAnálisisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBoxIp = new System.Windows.Forms.ToolStripTextBox();
-            this.lockToolbarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -102,6 +102,16 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(50, 22);
             this.toolStripLabel1.Text = "Dirección";
             // 
+            // toolStripTextBoxIp
+            // 
+            this.toolStripTextBoxIp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.toolStripTextBoxIp.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.toolStripTextBoxIp.AutoSize = false;
+            this.toolStripTextBoxIp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.toolStripTextBoxIp.MaxLength = 15;
+            this.toolStripTextBoxIp.Name = "toolStripTextBoxIp";
+            this.toolStripTextBoxIp.Size = new System.Drawing.Size(120, 21);
+            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
@@ -147,14 +157,6 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(244, 6);
             // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.closeToolStripMenuItem.Text = "Cerrar";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
             // opcionesToolStripMenuItem
             // 
             this.opcionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -167,34 +169,6 @@
             this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.opcionesToolStripMenuItem.Text = "Opciones";
             // 
-            // limpiarHistorialDeAutocompletadoToolStripMenuItem1
-            // 
-            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Name = "limpiarHistorialDeAutocompletadoToolStripMenuItem1";
-            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Size = new System.Drawing.Size(253, 22);
-            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Text = "Limpiar historial de autocompletado";
-            // 
-            // limpiarAnálisisToolStripMenuItem
-            // 
-            this.limpiarAnálisisToolStripMenuItem.Name = "limpiarAnálisisToolStripMenuItem";
-            this.limpiarAnálisisToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.limpiarAnálisisToolStripMenuItem.Text = "Limpiar análisis";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(250, 6);
-            // 
-            // toolStripTextBoxIp
-            // 
-            this.toolStripTextBoxIp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.toolStripTextBoxIp.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.toolStripTextBoxIp.AutoSize = false;
-            this.toolStripTextBoxIp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextBoxIp.MaxLength = 15;
-            this.toolStripTextBoxIp.Name = "toolStripTextBoxIp";
-            this.toolStripTextBoxIp.Size = new System.Drawing.Size(120, 21);
-            this.toolStripTextBoxIp.Text = global::IpAnalizer.Properties.Settings.Default.ipText;
-            // 
             // lockToolbarsToolStripMenuItem
             // 
             this.lockToolbarsToolStripMenuItem.Checked = global::IpAnalizer.Properties.Settings.Default.lockToolbars;
@@ -202,7 +176,36 @@
             this.lockToolbarsToolStripMenuItem.Name = "lockToolbarsToolStripMenuItem";
             this.lockToolbarsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.lockToolbarsToolStripMenuItem.Text = "Bloquear barras de menú";
+            this.lockToolbarsToolStripMenuItem.Visible = false;
             this.lockToolbarsToolStripMenuItem.Click += new System.EventHandler(this.lockToolbarsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(250, 6);
+            this.toolStripMenuItem2.Visible = false;
+            // 
+            // limpiarHistorialDeAutocompletadoToolStripMenuItem1
+            // 
+            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Name = "limpiarHistorialDeAutocompletadoToolStripMenuItem1";
+            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Size = new System.Drawing.Size(253, 22);
+            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Text = "Limpiar historial de autocompletado";
+            this.limpiarHistorialDeAutocompletadoToolStripMenuItem1.Click += new System.EventHandler(this.limpiarHistorialDeAutocompletadoToolStripMenuItem1_Click);
+            // 
+            // limpiarAnálisisToolStripMenuItem
+            // 
+            this.limpiarAnálisisToolStripMenuItem.Name = "limpiarAnálisisToolStripMenuItem";
+            this.limpiarAnálisisToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.limpiarAnálisisToolStripMenuItem.Text = "Limpiar análisis";
+            this.limpiarAnálisisToolStripMenuItem.Click += new System.EventHandler(this.limpiarAnalisisToolStripMenuItem_Click);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
+            this.closeToolStripMenuItem.Text = "Cerrar";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -213,7 +216,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormMain";
-            this.Text = "Ip Analizer";
+            this.Text = "Analizador de direcciones";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);

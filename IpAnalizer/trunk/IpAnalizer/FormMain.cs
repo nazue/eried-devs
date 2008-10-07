@@ -24,14 +24,17 @@ namespace IpAnalizer
 
         private void AnalizeNow()
         {
-            richTextBoxResults.Lines = GetAnalisis(toolStripTextBoxIp.Text, toolStripTextBoxMask.Text);
+            try
+            {
+                richTextBoxResults.Lines = GetAnalisis(toolStripTextBoxIp.Text, toolStripTextBoxMask.Text);
 
-            if (toolStripTextBoxIp.AutoCompleteCustomSource.IndexOf(toolStripTextBoxIp.Text) == -1)
-                toolStripTextBoxIp.AutoCompleteCustomSource.Add(toolStripTextBoxIp.Text);
+                if (toolStripTextBoxIp.AutoCompleteCustomSource.IndexOf(toolStripTextBoxIp.Text) == -1)
+                    toolStripTextBoxIp.AutoCompleteCustomSource.Add(toolStripTextBoxIp.Text);
 
-            if (toolStripTextBoxMask.AutoCompleteCustomSource.IndexOf(toolStripTextBoxMask.Text) == -1)
-                toolStripTextBoxMask.AutoCompleteCustomSource.Add(toolStripTextBoxMask.Text);
-  
+                if (toolStripTextBoxMask.AutoCompleteCustomSource.IndexOf(toolStripTextBoxMask.Text) == -1)
+                    toolStripTextBoxMask.AutoCompleteCustomSource.Add(toolStripTextBoxMask.Text);
+            }
+            catch { richTextBoxResults.Text = "Error en las entradas.";  }
         }
 
         private string[] GetAnalisis(string ip, string mask)
@@ -44,10 +47,23 @@ namespace IpAnalizer
             s.Add(String.Format("Máscara en binario:\t{0}",RepeatAsBin(mask)));
             s.Add(String.Format("Máscara formateada:\t{0}",SplitAndJoinString(RepeatAsBin(mask),8,".")));
             s.Add(String.Format("Máscara real:\t\t{0}",Bin2Dec(SplitAndJoinString(RepeatAsBin(mask),8,"."))));
-            s.Add(String.Format("Subredes posibles:\t{0}",Convert.ToInt16("0"+GetSubnetworks(GetLast8bits(RepeatAsBin(mask)))[0],2)));
-            s.Add(String.Format("Hosts posibles:\t\t{0}, menos 2 reservadas", Convert.ToInt16("0" + GetSubnetworks(GetLast8bits(RepeatAsBin(mask)))[1].Replace('0', '1'), 2)));
+            s.Add(String.Format("Clase según máscara:\tCLASE {0}", GetMaskClass(SplitAndJoinString(RepeatAsBin(mask), 8, "."))));
+            s.Add(String.Format("Subredes posibles:\t{0}",Convert.ToInt64("0"+GetSubnetworks(RepeatAsBin(mask))[0],2)));
+            s.Add(String.Format("Hosts posibles:\t\t{0}, menos 2 reservadas", Convert.ToInt64("0" + GetSubnetworks(RepeatAsBin(mask))[1].Replace('0', '1'), 2)));
 
             return s.ToArray();
+        }
+
+        private string GetMaskClass(string p)
+        {
+            String[] s = p.Split('.'), classes = { "A","B","C" } ;
+
+
+            for (int i = 1; i < s.Length; i++)
+                if (s[i].ToCharArray()[0] == '0')
+                    return classes[i - 1];
+
+            return "C";
         }
 
         private string SplitAndJoinAsBin(string ip)
@@ -183,6 +199,17 @@ namespace IpAnalizer
                 Settings.Default.maskAutocomplete.Add(s);
 
             Settings.Default.Save();
+        }
+
+        private void limpiarHistorialDeAutocompletadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            toolStripTextBoxIp.AutoCompleteCustomSource.Clear();
+            toolStripTextBoxMask.AutoCompleteCustomSource.Clear();
+        }
+
+        private void limpiarAnalisisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBoxResults.Clear();
         }
     }
 }

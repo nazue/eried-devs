@@ -25,18 +25,6 @@ namespace IpAnalizer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool lockToolbars {
-            get {
-                return ((bool)(this["lockToolbars"]));
-            }
-            set {
-                this["lockToolbars"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ipText {
             get {
@@ -78,6 +66,18 @@ namespace IpAnalizer.Properties {
             }
             set {
                 this["maskAutocomplete"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool lockToolbars {
+            get {
+                return ((bool)(this["lockToolbars"]));
+            }
+            set {
+                this["lockToolbars"] = value;
             }
         }
     }
