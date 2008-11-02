@@ -33,21 +33,22 @@
             this.zedGraphControlTemperature = new ZedGraph.ZedGraphControl();
             this.serialPortArduino = new System.IO.Ports.SerialPort(this.components);
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportarDaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.salirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.actualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.conectarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.desconectarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disconnectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.actualizarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opcionesDelProgramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.conectarAutomáticamenteAlIniciarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBoxPort = new System.Windows.Forms.ToolStripComboBox();
+            this.updatePortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smoothGraphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startupAutoConnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDelProgramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialogExport = new System.Windows.Forms.SaveFileDialog();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +69,7 @@
             this.zedGraphControlTemperature.ScrollMinX = 0;
             this.zedGraphControlTemperature.ScrollMinY = 0;
             this.zedGraphControlTemperature.ScrollMinY2 = 0;
-            this.zedGraphControlTemperature.Size = new System.Drawing.Size(735, 470);
+            this.zedGraphControlTemperature.Size = new System.Drawing.Size(650, 415);
             this.zedGraphControlTemperature.TabIndex = 0;
             this.zedGraphControlTemperature.ZoomButtons2 = System.Windows.Forms.MouseButtons.Right;
             // 
@@ -80,135 +81,141 @@
             // menuStripMain
             // 
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem,
-            this.actualizarToolStripMenuItem,
-            this.herramientasToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.sensorToolStripMenuItem,
+            this.optionsToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(735, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(650, 24);
             this.menuStripMain.TabIndex = 1;
             this.menuStripMain.Text = "menuStrip1";
             // 
-            // archivoToolStripMenuItem
+            // fileToolStripMenuItem
             // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportarDaToolStripMenuItem,
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToolStripMenuItem,
             this.toolStripMenuItem4,
-            this.salirToolStripMenuItem1});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.archivoToolStripMenuItem.Text = "&Archivo";
+            this.quitToolStripMenuItem1});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.fileToolStripMenuItem.Text = "&Archivo";
             // 
-            // exportarDaToolStripMenuItem
+            // exportToolStripMenuItem
             // 
-            this.exportarDaToolStripMenuItem.Name = "exportarDaToolStripMenuItem";
-            this.exportarDaToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.exportarDaToolStripMenuItem.Text = "&Exportar...";
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Text = "&Exportar...";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(123, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(149, 6);
             // 
-            // salirToolStripMenuItem1
+            // quitToolStripMenuItem1
             // 
-            this.salirToolStripMenuItem1.Name = "salirToolStripMenuItem1";
-            this.salirToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
-            this.salirToolStripMenuItem1.Text = "&Salir";
-            this.salirToolStripMenuItem1.Click += new System.EventHandler(this.salirToolStripMenuItem1_Click);
+            this.quitToolStripMenuItem1.Name = "quitToolStripMenuItem1";
+            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem1.Text = "&Salir";
+            this.quitToolStripMenuItem1.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
-            // actualizarToolStripMenuItem
+            // sensorToolStripMenuItem
             // 
-            this.actualizarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.conectarToolStripMenuItem,
-            this.desconectarToolStripMenuItem1,
+            this.sensorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToolStripMenuItem,
+            this.disconnectToolStripMenuItem1,
             this.toolStripMenuItem3,
-            this.toolStripComboBox1,
-            this.actualizarToolStripMenuItem1});
-            this.actualizarToolStripMenuItem.Name = "actualizarToolStripMenuItem";
-            this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.actualizarToolStripMenuItem.Text = "&Sensor";
-            this.actualizarToolStripMenuItem.Click += new System.EventHandler(this.actualizarToolStripMenuItem_Click);
+            this.toolStripComboBoxPort,
+            this.updatePortsToolStripMenuItem});
+            this.sensorToolStripMenuItem.Name = "sensorToolStripMenuItem";
+            this.sensorToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.sensorToolStripMenuItem.Text = "&Sensor";
+            this.sensorToolStripMenuItem.Click += new System.EventHandler(this.uptadeToolStripMenuItem_Click);
             // 
-            // conectarToolStripMenuItem
+            // connectToolStripMenuItem
             // 
-            this.conectarToolStripMenuItem.Name = "conectarToolStripMenuItem";
-            this.conectarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.conectarToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.conectarToolStripMenuItem.Text = "&Conectar";
-            this.conectarToolStripMenuItem.Click += new System.EventHandler(this.conectarToolStripMenuItem_Click_1);
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.connectToolStripMenuItem.Text = "&Conectar";
+            this.connectToolStripMenuItem.Click += new System.EventHandler(this.conectarToolStripMenuItem_Click_1);
             // 
-            // desconectarToolStripMenuItem1
+            // disconnectToolStripMenuItem1
             // 
-            this.desconectarToolStripMenuItem1.Name = "desconectarToolStripMenuItem1";
-            this.desconectarToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.desconectarToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
-            this.desconectarToolStripMenuItem1.Text = "&Desconectar";
-            this.desconectarToolStripMenuItem1.Click += new System.EventHandler(this.desconectarToolStripMenuItem1_Click);
+            this.disconnectToolStripMenuItem1.Name = "disconnectToolStripMenuItem1";
+            this.disconnectToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.disconnectToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+            this.disconnectToolStripMenuItem1.Text = "&Desconectar";
+            this.disconnectToolStripMenuItem1.Click += new System.EventHandler(this.desconectarToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(185, 6);
             // 
-            // toolStripComboBox1
+            // toolStripComboBoxPort
             // 
-            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(75, 23);
+            this.toolStripComboBoxPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxPort.Name = "toolStripComboBoxPort";
+            this.toolStripComboBoxPort.Size = new System.Drawing.Size(75, 23);
             // 
-            // actualizarToolStripMenuItem1
+            // updatePortsToolStripMenuItem
             // 
-            this.actualizarToolStripMenuItem1.Name = "actualizarToolStripMenuItem1";
-            this.actualizarToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.actualizarToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
-            this.actualizarToolStripMenuItem1.Text = "Actualizar puertos";
-            this.actualizarToolStripMenuItem1.Click += new System.EventHandler(this.actualizarToolStripMenuItem1_Click);
+            this.updatePortsToolStripMenuItem.Name = "updatePortsToolStripMenuItem";
+            this.updatePortsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.updatePortsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.updatePortsToolStripMenuItem.Text = "Actualizar puertos";
+            this.updatePortsToolStripMenuItem.Click += new System.EventHandler(this.actualizarToolStripMenuItem1_Click);
             // 
-            // herramientasToolStripMenuItem
+            // optionsToolStripMenuItem
             // 
-            this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.opcionesDelProgramaToolStripMenuItem,
-            this.conectarAutomáticamenteAlIniciarToolStripMenuItem});
-            this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
-            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
-            this.herramientasToolStripMenuItem.Text = "&Herramientas";
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.smoothGraphToolStripMenuItem,
+            this.startupAutoConnectToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.optionsToolStripMenuItem.Text = "&Opciones";
             // 
-            // opcionesDelProgramaToolStripMenuItem
+            // smoothGraphToolStripMenuItem
             // 
-            this.opcionesDelProgramaToolStripMenuItem.Name = "opcionesDelProgramaToolStripMenuItem";
-            this.opcionesDelProgramaToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
-            this.opcionesDelProgramaToolStripMenuItem.Text = "&Opciones...";
+            this.smoothGraphToolStripMenuItem.Checked = true;
+            this.smoothGraphToolStripMenuItem.CheckOnClick = true;
+            this.smoothGraphToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.smoothGraphToolStripMenuItem.Name = "smoothGraphToolStripMenuItem";
+            this.smoothGraphToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.smoothGraphToolStripMenuItem.Text = "&Suavizar la curva graficada";
+            this.smoothGraphToolStripMenuItem.Click += new System.EventHandler(this.smoothGraphToolStripMenuItem_Click);
             // 
-            // conectarAutomáticamenteAlIniciarToolStripMenuItem
+            // startupAutoConnectToolStripMenuItem
             // 
-            this.conectarAutomáticamenteAlIniciarToolStripMenuItem.Checked = true;
-            this.conectarAutomáticamenteAlIniciarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.conectarAutomáticamenteAlIniciarToolStripMenuItem.Name = "conectarAutomáticamenteAlIniciarToolStripMenuItem";
-            this.conectarAutomáticamenteAlIniciarToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
-            this.conectarAutomáticamenteAlIniciarToolStripMenuItem.Text = "Conectar automáticamente al iniciar";
+            this.startupAutoConnectToolStripMenuItem.Checked = true;
+            this.startupAutoConnectToolStripMenuItem.CheckOnClick = true;
+            this.startupAutoConnectToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.startupAutoConnectToolStripMenuItem.Name = "startupAutoConnectToolStripMenuItem";
+            this.startupAutoConnectToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.startupAutoConnectToolStripMenuItem.Text = "Conectar automáticamente al iniciar";
             // 
-            // ayudaToolStripMenuItem
+            // helpToolStripMenuItem
             // 
-            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.acercaDelProgramaToolStripMenuItem});
-            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.ayudaToolStripMenuItem.Text = "A&yuda";
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.helpToolStripMenuItem.Text = "A&yuda";
             // 
             // acercaDelProgramaToolStripMenuItem
             // 
             this.acercaDelProgramaToolStripMenuItem.Name = "acercaDelProgramaToolStripMenuItem";
             this.acercaDelProgramaToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.acercaDelProgramaToolStripMenuItem.Text = "Acerca del programa";
-            this.acercaDelProgramaToolStripMenuItem.Click += new System.EventHandler(this.acercaDelProgramaToolStripMenuItem_Click);
+            this.acercaDelProgramaToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 494);
+            this.ClientSize = new System.Drawing.Size(650, 439);
             this.Controls.Add(this.zedGraphControlTemperature);
             this.Controls.Add(this.menuStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -228,21 +235,22 @@
         private ZedGraph.ZedGraphControl zedGraphControlTemperature;
         private System.IO.Ports.SerialPort serialPortArduino;
         private System.Windows.Forms.MenuStrip menuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem actualizarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem actualizarToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem conectarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem desconectarToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem sensorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updatePortsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem exportarDaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
-        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxPort;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDelProgramaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem herramientasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opcionesDelProgramaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem conectarAutomáticamenteAlIniciarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem smoothGraphToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startupAutoConnectToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogExport;
     }
 }
 

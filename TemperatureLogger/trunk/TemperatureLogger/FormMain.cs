@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using ZedGraph;
 using System.IO.Ports;
 using System.Threading;
+using TemperatureLogger.Properties;
 
 namespace TemperatureLogger
 {
@@ -15,6 +16,7 @@ namespace TemperatureLogger
     {
         PointPairList temperatureData = new PointPairList();
         string lastPortUsed = "", AppTitle, AppTitleDisconnected;
+        bool lastAppStatus = false;
 
         public FormMain()
         {
@@ -22,6 +24,28 @@ namespace TemperatureLogger
         }
 
         private void FormMain_Load(object sender, EventArgs e)
+        {
+            GraphInitialization();
+
+            AppTitle = Properties.Resources.AppTitleConnected;
+            AppTitleDisconnected = Properties.Resources.AppTitleDisconnected;
+
+            UpdateSerialPorts();
+            UpdateApplicationStatus();
+
+            LoadApplicationSettings();
+
+            if(Settings.Default.configAutoConnect)
+                OpenPort();
+        }
+
+        private void LoadApplicationSettings()
+        {
+            smoothGraphToolStripMenuItem.Checked = Settings.Default.configSmoothGraph;
+            startupAutoConnectToolStripMenuItem.Checked = Settings.Default.configAutoConnect;
+        }
+
+        private void GraphInitialization()
         {
             zedGraphControlTemperature.GraphPane.Title.IsVisible = false;
             zedGraphControlTemperature.GraphPane.XAxis.Type = AxisType.Date;
@@ -31,34 +55,23 @@ namespace TemperatureLogger
             zedGraphControlTemperature.GraphPane.YAxis.Title.IsOmitMag = true;
 
             zedGraphControlTemperature.GraphPane.YAxis.Scale.BaseTic = 24;
-            //this.zedGraphControlTemperature.PointValueEvent += new ZedGraphControl.PointValueHandler(YScaleFormatEvent);
-            //zedGraphControlTemperature.GraphPane.YAxis.ScaleTitleEvent += new Axis.ScaleFormatHandler(YScaleFormatEvent);
             zedGraphControlTemperature.GraphPane.XAxis.Scale.BaseTic = GetActualTimeInDouble();
-            zedGraphControlTemperature.GraphPane.XAxis.Scale.Format = "G";
+            zedGraphControlTemperature.GraphPane.XAxis.Scale.Format = Properties.Resources.GraphScaleFormat;
 
+            zedGraphControlTemperature.GraphPane.CurveList.Clear();
             LineItem c = zedGraphControlTemperature.GraphPane.AddCurve(Properties.Resources.GraphLabelTemperature,
                   temperatureData, Color.Red, SymbolType.Circle);
 
-            c.Line.IsSmooth = true;
+            zedGraphControlTemperature.AxisChange();
             c.Line.SmoothTension = 0.6F;
             c.Line.Width = 3;
+            c.Line.IsSmooth = smoothGraphToolStripMenuItem.Checked;
 
-            zedGraphControlTemperature.AxisChange();
-
-            AppTitle = Properties.Resources.AppTitleConnected;
-            AppTitleDisconnected = Properties.Resources.AppTitleDisconnected;
-
-            UpdateSerialPorts();
-            OpenPort();
+            zedGraphControlTemperature.Refresh();
         }
 
 
         delegate void SetTextCallback(string text);
-        /*
-        public string YScaleFormatEvent(ZedGraphControl c, GraphPane pane, CurveItem v, int index)
-        {
-            return v.Points[index] ZedGraph.; // /*(v. / 100).ToString("f2") + " " + Properties.Resources.GraphLabelTemperature
-        }*/
 
         private void ProcessReceivedData(string text)
         {
@@ -105,7 +118,15 @@ namespace TemperatureLogger
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            UpdateApplicationSettings();
+            Settings.Default.Save();
             ClosePort();
+        }
+
+        private void UpdateApplicationSettings()
+        {
+            Settings.Default.configSmoothGraph = smoothGraphToolStripMenuItem.Checked;
+            Settings.Default.configAutoConnect = startupAutoConnectToolStripMenuItem.Checked;
         }
 
         private void ClosePort()
@@ -118,7 +139,7 @@ namespace TemperatureLogger
             catch { }
         }
 
-        private void conectarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenPort();
         }
@@ -127,7 +148,7 @@ namespace TemperatureLogger
         {
             try
             {
-                serialPortArduino.PortName = (string)toolStripComboBox1.SelectedItem;
+                serialPortArduino.PortName = (string)toolStripComboBoxPort.SelectedItem;
                 serialPortArduino.Open();
                 lastPortUsed = serialPortArduino.PortName;
                 SetApplicationStatus(true);
@@ -135,25 +156,25 @@ namespace TemperatureLogger
             catch { }
         }
 
-        private void desconectarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClosePort();
         }
 
-        private void actualizarPuertosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void updatePortListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateSerialPorts();
         }
 
         private void UpdateSerialPorts()
         {
-            toolStripComboBox1.Items.Clear();
+            toolStripComboBoxPort.Items.Clear();
 
             foreach(String d in SerialPort.GetPortNames())
                 if(!d.EndsWith("c"))
-                    toolStripComboBox1.Items.Add(d);
+                    toolStripComboBoxPort.Items.Add(d);
 
-            toolStripComboBox1.SelectedIndex =toolStripComboBox1.Items.Count-1;
+            toolStripComboBoxPort.SelectedIndex =toolStripComboBoxPort.Items.Count-1;
         }
 
         private void actualizarToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -171,16 +192,24 @@ namespace TemperatureLogger
             ClosePort();
         }
 
+        private void UpdateApplicationStatus()
+        {
+            SetApplicationStatus(lastAppStatus);
+        }
+
         private void SetApplicationStatus(bool b)
         {
             this.Text = String.Format((!b ? AppTitleDisconnected : AppTitle),lastPortUsed);
-            conectarToolStripMenuItem.Enabled = !b;
-            desconectarToolStripMenuItem1.Enabled = b;
-            toolStripComboBox1.Enabled = !b;
-            actualizarToolStripMenuItem1.Enabled = !b;
+            connectToolStripMenuItem.Enabled = !b;
+            disconnectToolStripMenuItem1.Enabled = b;
+            toolStripComboBoxPort.Enabled = !b;
+            updatePortsToolStripMenuItem.Enabled = !b;
+
+            // Recordar el último estado de la aplicación
+            lastAppStatus = b;
         }
 
-        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void uptadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CheckStatus();
         }
@@ -190,14 +219,45 @@ namespace TemperatureLogger
             SetApplicationStatus(serialPortArduino.IsOpen);
         }
 
-        private void salirToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void acercaDelProgramaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Desarrollado por Erwin Ried\nVersión 1.0\n\nEsta aplicación utiliza ZedGraph Class Library\nhttp://zedgraph.sourceforge.net", "Acerca de", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Resources.AppAboutText, Resources.AppAboutTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void smoothGraphToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GraphInitialization();
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialogExport.Filter = Resources.AppExportFilter;
+            saveFileDialogExport.Title = Resources.AppExportTitle;
+
+            try
+            {
+                if (saveFileDialogExport.ShowDialog() == DialogResult.OK)
+                {
+                    List<String> output = new List<string>();
+                    if (saveFileDialogExport.FilterIndex == 1)
+                        output.Add(Resources.AppExportColumnsHeader);
+
+                    foreach (PointPair p in temperatureData)
+                        output.Add(String.Format(Resources.AppExportColumnsFormat, p.X, p.Y));
+
+                    System.IO.File.WriteAllLines(saveFileDialogExport.FileName, output.ToArray());
+
+                }
+            }
+            catch 
+            {
+                MessageBox.Show(Resources.AppExportErrorText, Resources.AppExportErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
